@@ -13,6 +13,7 @@ connectDB();
 const app = express();
 
 app.use(express.json()); // to accept json data
+app.use("/api/user", userRoutes);
 
 // express js api
 app.get("/", (req, res) => {
@@ -22,8 +23,6 @@ app.get("/", (req, res) => {
 // Error handling middlewares
 app.use(notFound);
 app.use(errorHandler);
-
-app.use("/api/user", userRoutes);
 
 // start our own server
 // listen on port 5000
