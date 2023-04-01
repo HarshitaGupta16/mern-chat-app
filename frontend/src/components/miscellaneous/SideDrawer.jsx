@@ -13,6 +13,7 @@ import {
 import React, { useState } from "react";
 import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { ChatState } from "../../Context/ContextProvider";
+import ProfileModal from "./ProfileModal";
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -35,7 +36,7 @@ const SideDrawer = () => {
         <Tooltip label="Search Users to chat">
           <Button variant="ghost">
             <i class="fa fa-search"></i>
-            <Text d={{ base: "none", md: "flex" }} p="4">
+            <Text display={{ base: "none", md: "flex" }} p="4">
               Search User
             </Text>
           </Button>
@@ -60,7 +61,9 @@ const SideDrawer = () => {
               />
             </MenuButton>
             <MenuList>
-              <MenuItem>My Profile</MenuItem>
+              <ProfileModal user={user}>
+                <MenuItem>My Profile</MenuItem>
+              </ProfileModal>
               <MenuDivider />
               <MenuItem>Logout</MenuItem>
             </MenuList>

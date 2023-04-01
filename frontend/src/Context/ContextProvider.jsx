@@ -11,7 +11,6 @@ const ContextProvider = ({ children }) => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
     setUser(userInfo);
     if (!user) navigate("/");
-    console.log(user);
   }, [navigate, user]);
 
   return (
