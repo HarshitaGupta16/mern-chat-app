@@ -5,6 +5,7 @@ const path = require("path");
 const colors = require("colors");
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const chatRoutes = require("./routes/chatRoutes");
 
 require("dotenv").config({ path: path.resolve(__dirname, "./.env") });
 
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.json()); // to accept json data
 app.use("/api/user", userRoutes);
+app.use("/api/chat", chatRoutes);
 
 // express js api
 app.get("/", (req, res) => {
