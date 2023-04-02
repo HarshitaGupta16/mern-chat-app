@@ -81,10 +81,10 @@ const SideDrawer = () => {
     try {
       setLoadingChat(true);
       const config = {
-        header: {
+        headers: {
           // since we are sending some json data so Content-type": "application/json"
           "Content-type": "application/json",
-          Authentication: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
       const { data } = await axios.post("/api/chat", { userId }, config);
