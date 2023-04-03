@@ -54,6 +54,7 @@ const SideDrawer = () => {
         isClosable: true,
         position: "top-left",
       });
+      return;
     }
     try {
       setLoading(true);
@@ -63,6 +64,7 @@ const SideDrawer = () => {
         },
       };
       const { data } = await axios.get(`/api/user?search=${search}`, config);
+
       setLoading(false);
       setSearchResult(data);
     } catch (error) {

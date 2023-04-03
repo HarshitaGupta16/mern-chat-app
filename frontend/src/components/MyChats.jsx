@@ -20,7 +20,7 @@ const MyChats = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get("/api/user", config);
+      const { data } = await axios.get("/api/chat", config);
       setChats(data);
     } catch (error) {
       toast({
@@ -96,7 +96,7 @@ const MyChats = () => {
                   key={chat._id}
                 >
                   <Text>
-                    {!chat.isGroupChat && chat.users
+                    {!chat.isGroupChat
                       ? getSender(loggedUser, chat.users)
                       : chat.chatName}
                   </Text>
