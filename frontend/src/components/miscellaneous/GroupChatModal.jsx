@@ -25,7 +25,7 @@ const GroupChatModal = ({ children }) => {
   const [groupChatName, setGroupChatName] = useState();
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [search, setSearch] = useState("");
-  const [searchResult, setSearchResult] = useState([]); //search resu;ts that we get back from the api
+  const [searchResult, setSearchResult] = useState([]); //search results that we get back from the api
   const [loading, setLoading] = useState(false);
 
   const toast = useToast();
