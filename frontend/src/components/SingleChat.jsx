@@ -14,15 +14,51 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import ProfileModal from "./miscellaneous/ProfileModal";
 import UpdateGroupChatModal from "./miscellaneous/UpdateGroupChatModal";
 import axios from "axios";
+import "./styles.css";
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
-  const { messages, setMessages } = useState([]);
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState();
 
   const { user, selectedChat, setSelectedChat } = ChatState();
 
   const toast = useToast();
+
+  const fetchMessages = async () => {
+    if (!selectedChat) return;
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+
+      setLoading(true);
+
+      const { data } = await axios.get(
+        `/api/message/${selectedChat._id}`,
+        config
+      );
+
+      console.log(data);
+      setMessages(data);
+      setLoading(false);
+    } catch (error) {
+      toast({
+        title: "Error Occured!",
+        description: error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchMessages();
+  }, [selectedChat]);
 
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
@@ -98,6 +134,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <UpdateGroupChatModal
                   fetchAgain={fetchAgain}
                   setFetchAgain={setFetchAgain}
+                  fetchMessages={fetchMessages}
                 />
               </>
             )}
@@ -124,7 +161,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 color="blue.500"
               />
             ) : (
-              <div>{/* Messages */}</div>
+              <div className="messages">{/* Messages */}</div>
             )}
             <FormControl onKeyDown={sendMessage} isRequired mt={3}>
               <Input
