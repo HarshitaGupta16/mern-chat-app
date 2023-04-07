@@ -54,4 +54,11 @@ io.on("connection", (socket) => {
     socket.join(userData._id);
     socket.emit("connected");
   });
+
+  // When we click on any of the chat this will create a new room with that particular user and the logged in user
+  // or when other person joins add him to this particular room
+  socket.on("join chat", (room) => {
+    socket.join(room);
+    console.log("User Joined Room: " + room);
+  });
 });
