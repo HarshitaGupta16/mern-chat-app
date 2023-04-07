@@ -137,7 +137,12 @@ const SideDrawer = () => {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="3xl" fontFamily="Londrina Outline" fontWeight="bold">
+        <Text
+          fontSize="3xl"
+          fontFamily="Londrina Outline"
+          fontWeight="bold"
+          letterSpacing="0.1rem"
+        >
           Chit Chat
         </Text>
         <div>
