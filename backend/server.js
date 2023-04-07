@@ -77,4 +77,10 @@ io.on("connection", (socket) => {
       socket.in(user._id).emit("message received", newMessageReceived);
     });
   });
+
+  socket.off("setup", () => {
+    console.log("USER DISCONNECTED");
+    // leave this userData._id room created for that particular user
+    socket.leave(userData._id);
+  });
 });
